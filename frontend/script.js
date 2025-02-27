@@ -6,8 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to get the current date and time in a readable format
     const getTimestamp = () => {
         const now = new Date();
-        const date = now.toISOString();  // ISO format (e.g., 2025-02-27T10:30:00.000Z)
-        return date;
+        return now.toISOString();  // ISO format (e.g., 2025-02-27T10:30:00.000Z)
     };
 
     const handleFormSubmit = async (formData) => {
@@ -16,8 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const timestamp = getTimestamp();
             formData.timestamp = timestamp;
 
-            // Send form data with timestamp
-            const response = await axios.post("http://localhost:4000", formData);
+            // Send form data with timestamp to backend
+            const response = await axios.post("http://localhost:4000/submit", formData);
             console.log("Enrollment Success:", response.data.message);
 
             // Show success message
