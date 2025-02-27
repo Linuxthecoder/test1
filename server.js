@@ -1,14 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const path = require("path"); // Required for serving static files
+const path = require("path");
 
 const app = express();
 app.use(express.json());
 
-// Configure CORS to allow requests from your front-end (e.g., localhost:3000)
+// Correct CORS configuration (allowing frontend on localhost:3000)
 app.use(cors({
-    origin: "http://localhost:3000",  // Replace with your front-end URL if different
+    origin: "http://localhost:3000",  // Correct origin for your frontend
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"]
 }));
@@ -18,8 +18,8 @@ app.use(express.static(path.join(__dirname, "frontend")));
 
 // Connect to MongoDB Atlas
 mongoose.connect("mongodb+srv://pubghearbeat:E5YqOcM3IG4W3KqL@cluster0.gobyb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {})
-.then(() => console.log("Connected to MongoDB Atlas"))
-.catch(err => console.error("MongoDB connection error:", err));
+    .then(() => console.log("Connected to MongoDB Atlas"))
+    .catch(err => console.error("MongoDB connection error:", err));
 
 // Define schema and model
 const EnrollmentSchema = new mongoose.Schema({
@@ -51,7 +51,6 @@ const Enrollment = mongoose.model("Enrollment", EnrollmentSchema);
 // API to handle form submission
 app.post("/submit", async (req, res) => {
     try {
-        // Create a new enrollment with the form data, including the timestamp
         const newEnrollment = new Enrollment(req.body);
         await newEnrollment.save();
         res.status(200).json({ message: "Enrollment successful!" });
