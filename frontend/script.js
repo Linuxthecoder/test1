@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
             formData.timestamp = timestamp;
 
             // Send form data with timestamp
-            const response = await axios.post("http://localhost:4000/submit", formData);
+            const response = await axios.post("http://localhost:4000", formData);
             console.log("Enrollment Success:", response.data.message);
 
             // Show success message
