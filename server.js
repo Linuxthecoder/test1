@@ -7,8 +7,10 @@ const app = express();
 app.use(express.json());
 
 // Correct CORS configuration (allowing frontend on localhost:3000)
+const cors = require("cors");
+
 app.use(cors({
-    origin: "http://localhost:3000",  // Correct origin for your frontend
+    origin: ["http://localhost:3000", "https://www-aceacademy-com.onrender.com"],  
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"]
 }));
