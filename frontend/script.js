@@ -15,8 +15,17 @@ document.addEventListener("DOMContentLoaded", function () {
             const timestamp = getTimestamp();
             formData.timestamp = timestamp;
 
-            // Send form data with timestamp to backend
-            const response = await axios.post("http://localhost:4000/submit", formData);
+            // Send form data with timestamp to backend (Change URL based on environment)
+            const response = await axios.post(
+                "https://www-aceacademy-com.onrender.com/submit", 
+                formData, 
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
+
             console.log("Enrollment Success:", response.data.message);
 
             // Show success message
